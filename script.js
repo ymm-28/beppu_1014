@@ -160,7 +160,5 @@ document.getElementById('keyword-form').addEventListener('submit', function(even
         updateHints(points);
 
         document.getElementById('keyword').value = '';  // 入力フォームをリセット
-    } else {
-        alert("無効なキーワード、またはすでに入力済みです。");
     }
 });
