@@ -1,15 +1,25 @@
 // キーワードとポイントのマッピング
 const keywordPoints = {
-    "りんご": 10,
-    "みかん": 10,
-    "ばなな": 10,
-    "えんぴつ": 20,
-    "けしごむ": 20,
-    "はさみ": 20,
-    "らいおん": 30,
-    "ぞう": 30,
-    "きりん": 30,
-    "うさぎ": 30
+    "あ": 10,
+    "い": 10,
+    "う": 10,
+    "え": 10,
+    "お": 10,
+    "か": 20,
+    "き": 20,
+    "く": 20,
+    "け": 20,
+    "こ": 20,
+    "さ": 30,
+    "し": 30,
+    "す": 30,
+    "せ": 30,
+    "そ": 30,
+    "た": 40,
+    "ち": 40,
+    "つ": 40,
+    "て": 40,
+    "と": 40
 };
 
 // ローカルストレージからデータを取得
@@ -54,19 +64,19 @@ document.getElementById('keyword-form').addEventListener('submit', function(even
 // ヒントの表示を更新する関数
 function updateHints(points) {
     // 50ポイントでヒント1を表示
-    if (points >= 50) {
+    if (points >= 30) {
         document.getElementById('hint1').classList.remove('hidden');
         hintsUnlocked.hint1 = true;
     }
 
     // 100ポイントでヒント2を表示
-    if (points >= 100) {
+    if (points >= 60) {
         document.getElementById('hint2').classList.remove('hidden');
         hintsUnlocked.hint2 = true;
     }
 
     // 150ポイントでヒント3を表示
-    if (points >= 150) {
+    if (points >= 90) {
         document.getElementById('hint3').classList.remove('hidden');
         hintsUnlocked.hint3 = true;
     }
