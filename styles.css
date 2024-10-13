@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 50px;
+    text-align: center;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.points {
+    margin-top: 20px;
+    font-size: 24px;
+    color: green;
+}
+
+.keywords {
+    margin-top: 20px;
+    font-size: 18px;
+    color: blue;
+}

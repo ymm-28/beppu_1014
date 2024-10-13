@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キーワードでポイントゲット</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>キーワードを入力してポイントを貯めよう！</h1>
+    <form id="keyword-form">
+        <input type="text" id="keyword" name="keyword" placeholder="キーワードを入力" required>
+        <button type="submit">送信</button>
+    </form>
+    <div class="points">
+        <strong>現在のポイント：</strong><span id="total-points">0</span>pt
+    </div>
+    <div class="keywords">
+        <strong>入力済みキーワード：</strong><span id="entered-keywords">なし</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
