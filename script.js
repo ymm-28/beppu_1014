@@ -131,7 +131,7 @@ function showPopupMessage(message) {
             popup.style.display = 'none';
             popup.style.opacity = '1'; // フェードイン用にリセット
         }, 500); // フェードアウトが終わるまで待つ
-    }, 1500); // 3秒後に消える
+    }, 3000); // 3秒後に消える
 }
 
 // フォーム送信時の処理
