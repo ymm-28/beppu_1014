@@ -19,7 +19,12 @@ const keywordPoints = {
     "ち": 40,
     "つ": 40,
     "て": 40,
-    "と": 40
+    "と": 40,
+    "な": 50,
+    "に": 50,
+    "ぬ": 50,
+    "ね": 50,
+    "の": 50,
 };
 
 // ローカルストレージからデータを取得
@@ -109,4 +114,53 @@ document.querySelectorAll('.hint-btn').forEach(button => {
         const content = this.nextElementSibling;
         content.style.display = content.style.display === 'none' || content.style.display === '' ? 'block' : 'none';
     });
+});
+
+
+
+// ポップアップメッセージを表示する関数
+function showPopupMessage(message) {
+    const popup = document.getElementById('popup-message');
+    popup.innerText = message;
+    popup.style.display = 'block'; // ポップアップを表示
+
+    // 3秒後にフェードアウトして消える
+    setTimeout(function() {
+        popup.style.opacity = '0'; // フェードアウト
+        setTimeout(function() {
+            popup.style.display = 'none';
+            popup.style.opacity = '1'; // フェードイン用にリセット
+        }, 500); // フェードアウトが終わるまで待つ
+    }, 1500); // 3秒後に消える
+}
+
+// フォーム送信時の処理
+document.getElementById('keyword-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const keyword = document.getElementById('keyword').value.trim();
+
+    // 入力されたキーワードが事前定義のマップに存在するか確認
+    if (keywordPoints.hasOwnProperty(keyword) && !keywords.includes(keyword)) {
+        keywords.push(keyword);
+        const gainedPoints = keywordPoints[keyword];  // 獲得したポイントを変数に格納
+        points += gainedPoints;  // キーワードに対応するポイントを加算
+
+        // ポイント獲得メッセージを表示
+        showPopupMessage(`${gainedPoints}ポイント獲得！`);
+
+        // ローカルストレージにデータを保存
+        localStorage.setItem('keywords', JSON.stringify(keywords));
+        localStorage.setItem('points', points);
+
+        // 画面上の表示を更新
+        document.getElementById('total-points').innerText = points;
+        document.getElementById('entered-keywords').innerText = keywords.join(', ');
+
+        // ヒントの表示を更新
+        updateHints(points);
+
+        document.getElementById('keyword').value = '';  // 入力フォームをリセット
+    } else {
+        alert("無効なキーワード、またはすでに入力済みです。");
+    }
 });
