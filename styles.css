@@ -25,3 +25,36 @@ button {
     font-size: 18px;
     color: blue;
 }
+
+
+.hints {
+    margin-top: 30px;
+}
+
+.hint {
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.hint-btn {
+    cursor: pointer;
+    background-color: #f1f1f1;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    font-size: 18px;
+}
+
+.hint-content {
+    display: none;
+    padding: 10px;
+    background-color: #e6e6e6;
+    margin-top: 5px;
+}
+
+.hint.hidden {
+    display: none;
+}
