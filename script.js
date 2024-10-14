@@ -137,28 +137,37 @@ function showPopupMessage(message) {
 // フォーム送信時の処理
 document.getElementById('keyword-form').addEventListener('submit', function(event) {
     event.preventDefault();
-    const keyword = document.getElementById('keyword').value.trim();
+    const keywordInput = document.getElementById('keyword').value;
+    const keyword = normalizeKeyword(keywordInput);
 
-    // 入力されたキーワードが事前定義のマップに存在するか確認
-    if (keywordPoints.hasOwnProperty(keyword) && !keywords.includes(keyword)) {
-        keywords.push(keyword);
-        const gainedPoints = keywordPoints[keyword];  // 獲得したポイントを変数に格納
-        points += gainedPoints;  // キーワードに対応するポイントを加算
+    if (keywordPoints.hasOwnProperty(keyword)) { 
+        // キーワードが設定されているか確認
+        if (!keywords.includes(keyword)) {
+            // まだ入力されていない場合
+            keywords.push(keyword);
+            const gainedPoints = keywordPoints[keyword];  // 獲得したポイントを変数に格納
+            points += gainedPoints;  // キーワードに対応するポイントを加算
 
-        // ポイント獲得メッセージを表示
-        showPopupMessage(`${gainedPoints}ポイント獲得！`);
+            // ポップアップメッセージを表示
+            showPopupMessage(`${gainedPoints}ポイント獲得！`);
 
-        // ローカルストレージにデータを保存
-        localStorage.setItem('keywords', JSON.stringify(keywords));
-        localStorage.setItem('points', points);
+            // ローカルストレージにデータを保存
+            localStorage.setItem('keywords', JSON.stringify(keywords));
+            localStorage.setItem('points', points);
 
-        // 画面上の表示を更新
-        document.getElementById('total-points').innerText = points;
-        document.getElementById('entered-keywords').innerText = keywords.join(', ');
+            // 画面上の表示を更新
+            document.getElementById('total-points').innerText = points;
+            document.getElementById('entered-keywords').innerText = keywords.join(', ');
 
-        // ヒントの表示を更新
-        updateHints(points);
+            // ヒントの表示を更新
+            updateHints(points);
 
-        document.getElementById('keyword').value = '';  // 入力フォームをリセット
+            document.getElementById('keyword').value = '';  // 入力フォームをリセット
+        } else {
+            alert("入力済みです。");
+        }
+    } else {
+        alert("設定されていないキーワードです。");
     }
 });
+
