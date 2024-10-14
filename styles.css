@@ -21,12 +21,6 @@ button {
     color: green;
 }
 
-.keywords {
-    margin-top: 20px;
-    font-size: 18px;
-    color: blue;
-}
-
 /* グリッド全体のスタイル */
 .grid-container {
     display: grid;
