@@ -23,7 +23,7 @@ button {
 .points {
     margin-top: 20px;
     font-size: 24px;
-    color: green;
+    color: rgb(51, 184, 51);
 }
 
 /* グリッド全体のスタイル */
@@ -48,7 +48,7 @@ button {
 
 /* 正解したときのグリッドの色 */
 .correct {
-    background-color: green;
+    background-color: rgb(51, 184, 51);
     color: white;
 }
 
