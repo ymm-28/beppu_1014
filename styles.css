@@ -30,7 +30,7 @@ button {
 /* グリッド全体のスタイル */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(10, 50px); /* 横に10個表示 */
+    grid-template-columns: repeat(5, 50px); /* 横に10個表示 */
     grid-gap: 10px; /* グリッドの隙間 */
     margin-top: 20px;
 }
