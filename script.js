@@ -1,30 +1,30 @@
-// キーワードとポイントのマッピング
+// キーワードと番号、ポイントのマッピング
 const keywordPoints = {
-    "あ": 10,
-    "い": 10,
-    "う": 10,
-    "え": 10,
-    "お": 10,
-    "か": 20,
-    "き": 20,
-    "く": 20,
-    "け": 20,
-    "こ": 20,
-    "さ": 30,
-    "し": 30,
-    "す": 30,
-    "せ": 30,
-    "そ": 30,
-    "た": 40,
-    "ち": 40,
-    "つ": 40,
-    "て": 40,
-    "と": 40,
-    "な": 50,
-    "に": 50,
-    "ぬ": 50,
-    "ね": 50,
-    "の": 50,
+    "あ": { number: 1, points: 10 },
+    "い": { number: 2, points: 10 },
+    "う": { number: 3, points: 10 },
+    "え": { number: 4, points: 10 },
+    "お": { number: 5, points: 10 },
+    "か": { number: 6, points: 20 },
+    "き": { number: 7, points: 20 },
+    "く": { number: 8, points: 20 },
+    "け": { number: 9, points: 20 },
+    "こ": { number: 10, points: 20 },
+    "さ": { number: 11, points: 30 },
+    "し": { number: 12, points: 30 },
+    "す": { number: 13, points: 30 },
+    "せ": { number: 14, points: 30 },
+    "そ": { number: 15, points: 30 },
+    "た": { number: 16, points: 40 },
+    "ち": { number: 17, points: 40 },
+    "つ": { number: 18, points: 40 },
+    "て": { number: 19, points: 40 },
+    "と": { number: 20, points: 40 },
+    "な": { number: 21, points: 50 },
+    "に": { number: 22, points: 50 },
+    "ぬ": { number: 23, points: 50 },
+    "ね": { number: 24, points: 50 },
+    "の": { number: 25, points: 50 },
 };
 
 // ローカルストレージからデータを取得
@@ -34,37 +34,63 @@ let hintsUnlocked = JSON.parse(localStorage.getItem('hintsUnlocked')) || { hint1
 
 // ページロード時に表示を更新
 document.getElementById('total-points').innerText = points;
-document.getElementById('entered-keywords').innerText = keywords.length > 0 ? keywords.join(', ') : 'なし';
 
-// ヒントの表示更新
-updateHints(points);
+// グリッドを生成
+const gridContainer = document.querySelector('.grid-container');
+for (let i = 1; i <= 50; i++) {
+    const gridItem = document.createElement('div');
+    gridItem.classList.add('grid-item');
+    gridItem.textContent = i;
+    gridItem.id = `grid-${i}`;  // グリッドにIDを付与
+    gridContainer.appendChild(gridItem);
+}
+
+// ロード時に既に正解したキーワードのグリッドを緑色に
+keywords.forEach(keyword => {
+    const keywordData = keywordPoints[keyword];
+    if (keywordData) {
+        document.getElementById(`grid-${keywordData.number}`).classList.add('correct');
+    }
+});
 
 // フォーム送信時の処理
 document.getElementById('keyword-form').addEventListener('submit', function(event) {
     event.preventDefault();
     const keyword = document.getElementById('keyword').value.trim();
 
-    // 入力されたキーワードが事前定義のマップに存在するか確認
     if (keywordPoints.hasOwnProperty(keyword) && !keywords.includes(keyword)) {
+        const { number, points: gainedPoints } = keywordPoints[keyword];
+
+        // キーワードとポイントを保存
         keywords.push(keyword);
-        points += keywordPoints[keyword];  // キーワードに対応するポイントを加算
+        points += gainedPoints;
 
         // ローカルストレージにデータを保存
         localStorage.setItem('keywords', JSON.stringify(keywords));
         localStorage.setItem('points', points);
 
-        // 画面上の表示を更新
+        // グリッドの色を変更
+        document.getElementById(`grid-${number}`).classList.add('correct');
+
+        // ポイント表示を更新
         document.getElementById('total-points').innerText = points;
-        document.getElementById('entered-keywords').innerText = keywords.join(', ');
+
+        // ポップアップメッセージの表示
+        showPopupMessage(`${gainedPoints}ポイント獲得！`);
 
         // ヒントの表示を更新
         updateHints(points);
 
-        document.getElementById('keyword').value = '';  // 入力フォームをリセット
+        // フォームをリセット
+        document.getElementById('keyword').value = '';
+    } else if (keywords.includes(keyword)) {
+        alert("入力済みです。");
     } else {
-        alert("無効なキーワード、またはすでに入力済みです。");
+        alert("設定されていないキーワードです。");
     }
 });
+
+
 
 // ヒントの表示を更新する関数
 function updateHints(points) {
