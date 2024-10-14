@@ -5,6 +5,10 @@ body {
     text-align: center;
 }
 
+logo {
+    width: 100%;
+}
+
 input[type="text"] {
     padding: 10px;
     font-size: 16px;
@@ -37,7 +41,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: lightgray;
+    background-color: white;
     border: 1px solid #ccc;
     font-size: 18px;
 }
