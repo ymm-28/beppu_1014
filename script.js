@@ -25,6 +25,31 @@ const keywordPoints = {
     "ぬ": { number: 23, points: 50 },
     "ね": { number: 24, points: 50 },
     "の": { number: 25, points: 50 },
+    "は": { number: 26, points: 50 },
+    "ひ": { number: 27, points: 50 },
+    "ふ": { number: 28, points: 50 },
+    "へ": { number: 29, points: 50 },
+    "ほ": { number: 30, points: 50 },
+    "ま": { number: 31, points: 50 },
+    "み": { number: 32, points: 50 },
+    "む": { number: 33, points: 50 },
+    "め": { number: 34, points: 50 },
+    "も": { number: 35, points: 50 },
+    "や": { number: 36, points: 50 },
+    "yi": { number: 37, points: 50 },
+    "ゆ": { number: 38, points: 50 },
+    "ye": { number: 39, points: 50 },
+    "よ": { number: 40, points: 50 },
+    "ら": { number: 41, points: 50 },
+    "り": { number: 42, points: 50 },
+    "る": { number: 43, points: 50 },
+    "れ": { number: 44, points: 50 },
+    "ろ": { number: 45, points: 50 },
+    "わ": { number: 46, points: 50 },
+    "ゐ": { number: 47, points: 50 },
+    "を": { number: 48, points: 50 },
+    "ゑ": { number: 49, points: 50 },
+    "ん": { number: 50, points: 50 }
 };
 
 // ローカルストレージからデータを取得
@@ -94,21 +119,27 @@ document.getElementById('keyword-form').addEventListener('submit', function(even
 
 // ヒントの表示を更新する関数
 function updateHints(points) {
-    // 50ポイントでヒント1を表示
+    // 30ポイントでヒント1を表示
     if (points >= 30) {
         document.getElementById('hint1').classList.remove('hidden');
         hintsUnlocked.hint1 = true;
     }
 
-    // 100ポイントでヒント2を表示
+    // 60ポイントでヒント2を表示
     if (points >= 60) {
         document.getElementById('hint2').classList.remove('hidden');
         hintsUnlocked.hint2 = true;
     }
 
-    // 150ポイントでヒント3を表示
+    // 90ポイントでヒント3を表示
     if (points >= 90) {
         document.getElementById('hint3').classList.remove('hidden');
+        hintsUnlocked.hint3 = true;
+    }
+
+    // 120ポイントでヒント3を表示
+    if (points >= 120) {
+        document.getElementById('hint4').classList.remove('hidden');
         hintsUnlocked.hint3 = true;
     }
 
@@ -126,6 +157,9 @@ function loadHints() {
     }
     if (hintsUnlocked.hint3) {
         document.getElementById('hint3').classList.remove('hidden');
+    }
+    if (hintsUnlocked.hint4) {
+        document.getElementById('hint4').classList.remove('hidden');
     }
 }
 
@@ -157,7 +191,7 @@ function showPopupMessage(message) {
             popup.style.display = 'none';
             popup.style.opacity = '1'; // フェードイン用にリセット
         }, 500); // フェードアウトが終わるまで待つ
-    }, 3000); // 3秒後に消える
+    }, 1500); // 3秒後に消える
 }
 
 // フォーム送信時の処理
