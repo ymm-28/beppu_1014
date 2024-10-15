@@ -6,7 +6,7 @@ body {
 }
 
 .logo img {
-    width: 60%;
+    width: 90%;
 }
 
 input[type="text"] {
@@ -84,11 +84,11 @@ button {
 }
 
 .backyard img {
-    width: 70%;
+    width: 90%;
 }
 
 .pass img {
-    width: 70%;
+    width: 90%;
 }
 
 .hint.hidden {
